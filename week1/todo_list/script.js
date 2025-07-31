@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const storedTasks = JSON.parse(localStorage.getItem('tasks'))
-    console.log(storedTasks)
     if (storedTasks) {
         tasks = storedTasks
-        updateTasksLists(tasks, tasksList)
+        lastId = tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) : 0;
     }
     
     getMeteo(meteoInfo)
@@ -15,7 +14,7 @@ let tasks = []
 // Constant
 const lat = 6.16667
 const lon = 1.21667
-const apiKey = "be334233bc1bc9dcdf76d435879ba2d5"
+const apiKey = process.env.API_KEY
 const addBtn = document.querySelector(".btn")
 const taskInput = document.querySelector('.taskInput')
 const taskCompterContent = document.querySelector(".task_compter")
