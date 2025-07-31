@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bgColor: #294236;
+    --textColor: white;
+    --primaryColor: #FFA15C;
+    --secondaryColor: rgba(19, 213, 170, 1);
+    --green: rgba(19, 213, 170, 0.3);
+    --dangerColor: #FA233E;
+}
+
+body {
+    background-color: var(--bgColor);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px;
+    margin: 1rem auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--secondaryColor);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.task_compter {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.details {
+    gap: 2;
+    width: 100%;
+}
+
+.details h1 {
+    margin: 10px 0;
+}
+
+.details h1, .details h3 {
+    color: var(--primaryColor);
+}
+
+.progress_bar {
+    width: 100%;
+    height: 5px;
+    background-color: var(--green);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+#progress {
+    background-color: var(--secondaryColor);
+    height: 5px;
+    border-radius: 5px;
+    width: 0;
+}
+
+.task_compter {
+    background-color: var(--primaryColor);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 2rem;
+    border-radius: 50%;
+}
+
+.alert{
+    text-align: center;
+}
+
+.alert p {
+    color: var(--dangerColor);
+}
+
+form {
+    margin: 1rem;
+    display: flex;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+    outline: none;
+    background: var(--bgColor);
+    border: 1px solid var(--secondaryColor);
+    border-radius: 10px 0 0 10px;
+}
+
+.btn {
+    font-size: 1.5rem;
+    padding: 1rem 1.5rem;
+    font-weight: bold;
+    background: var(--primaryColor);
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    border: 1px solid var(--secondaryColor);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.taskItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.taskTitle {
+    display: flex;
+    font-size: 1.2rem;
+
+}
+.completed {
+    text-decoration: line-through;
+    color: var(--dangerColor);
+}
+
+.checkbox {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.btnUpdate {
+    background-color: var(--bgColor);
+    border: none;
+    font-size: 1.2rem;
+    color: var(--secondaryColor);
+}
+
+.btnDelete {
+    background-color: var(--bgColor);
+    border: none;
+    font-size: 1.2rem;
+    color: var(--dangerColor);
+}
+
+.btnUpdate i, .btnDelete i{
+    color: inherit;
+    cursor: pointer;
+}
