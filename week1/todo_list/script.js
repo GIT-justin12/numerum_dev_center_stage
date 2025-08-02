@@ -1,38 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const storedTasks = JSON.parse(localStorage.getItem('tasks'))
-    if (storedTasks) {
-        tasks = storedTasks
-        lastId = tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) : 0;
-    }
-    
-    getMeteo(meteoInfo)
-    updateTasksLists()
-})
-
-let tasks = []
-
 // Constant
 const lat = 6.16667
 const lon = 1.21667
-const apiKey = process.env.API_KEY
+const apiKey = API_KEY
 const addBtn = document.querySelector(".btn")
 const taskInput = document.querySelector('.taskInput')
 const taskCompterContent = document.querySelector(".task_compter")
-const meteoInfo = document.querySelector(".meteo_info")
 const alert = document.querySelector(".alert")
 
-
 // Variables
+let tasks = []
 let completedTasks = 0
-let totalTasks = tasks.length
+let editingTask = null
+let totalTasks = 1
+let meteoInfo
+let lastMeteoMessage = ''
 let tasksList = document.querySelector(".tasksList")
-let taskCompter = document.createElement("span")
-
-
-
-taskCompter.innerHTML = `${completedTasks} / ${totalTasks}`
-taskCompterContent.append(taskCompter)
-
+let taskCompter = document.createElement("div")
+let levelInfo = document.querySelector(".level_info")
 
 addBtn.addEventListener('click', (e) => {
     e.preventDefault()
@@ -40,6 +24,26 @@ addBtn.addEventListener('click', (e) => {
     taskProgression(tasks, completedTasks, totalTasks)
 })
 
+document.addEventListener("DOMContentLoaded", () => {
+    const storedTasks = JSON.parse(localStorage.getItem('tasks'))
+
+    taskCompterContent.append(taskCompter)
+    meteoInfo = document.querySelector(".meteo_info")
+    meteoInfo.innerHTML = '<p>Recherche des données météo en cours</p>'
+
+    if (storedTasks) {
+        tasks = storedTasks
+        completedTasks = tasks.filter((task) => task.completed).length
+        taskCompter.innerHTML = `${completedTasks} / ${totalTasks}`
+    }
+    
+    getMeteo(meteoInfo)
+    setInterval(() => {
+        getMeteo(meteoInfo)
+    }, 60000)
+    updateTasksLists(tasks, tasksList)
+    taskProgression(tasks, completedTasks, totalTasks)
+})
 
 // Functions
 /**
@@ -51,13 +55,24 @@ const addTask = (taskInput, tasks) => {
     const taskName = taskInput.value.trim()
 
     if (taskName) {
-        tasks.push({name: taskName, completed: false})
-        updateTasksLists(tasks, tasksList)
         alert.innerHTML = ""
+        if (editingTask) {
+            const taskToUpdate = tasks.find(task => task.id === editingTask.id)
+
+            if (taskToUpdate) {
+                taskToUpdate.name = taskName
+            }
+            
+            editingTask = null;
+        } else {
+            tasks.push({id: Date.now(), name: taskName, completed: false})
+        }
+        taskInput.value = ''
     } else {
         alert.innerHTML = '<p>Veuillez écrire la tâche</p>'
     }
-    taskInput.value = ''
+    JSON.parse(localStorage.getItem('tasks'))
+    updateTasksLists(tasks, tasksList)
 }
 
 /**
@@ -72,21 +87,34 @@ const getMeteo = async (meteoInfo) => {
         const response = await fetch(apiUrl);
         
         if (!response.ok) {
-            throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+            throw new Error(`Erreur HTTP! Statut: ${response.status}`)
         }
 
-        const data = await response.json();
-        const temperature = data.main.temp;
+        const data = await response.json()
+        const temperature = data.main.temp
         const city = data.name;
         const country = data.sys.country;
-        console.log(data)
-        message = `<p>${temperature} °C, ${city}-${country}</p>`
+        lastMeteoMessage = `<p>${temperature} °C, ${city}-${country}</p>`
+        message = lastMeteoMessage
     } catch (error) {
-        message = `<p>Erreur lors de la récupération des données météo: ${error}</p>`
+        if (lastMeteoMessage) {
+            message = lastMeteoMessage
+        } else {
+            message = `<p class="apiInfo">Erreur lors de la récupération des données météo ! <a href="#" onclick="restartApi(meteoInfo)">Actualiser</a></p>`
+        }
     }
 
     meteoInfo.innerHTML = message
-};
+}
+
+/**
+ * restartApi: restart api data
+ * * @param {HTMLBodyElement} meteoInfo
+ */
+const restartApi = (meteoInfo) => {
+    meteoInfo.innerHTML = '<p>Recherche des données météo en cours</p>'
+    getMeteo(meteoInfo)
+}
 
 /**
  * taskProgression: Display progression
@@ -97,40 +125,52 @@ const getMeteo = async (meteoInfo) => {
 
 const taskProgression = (tasks, completedTasks, totalTasks) => {
     completedTasks = tasks.filter((task) => task.completed).length
-    totalTasks = tasks.length
+    taskCompter.innerHTML = `${completedTasks} / ${tasks.length}`
+    totalTasks = tasks.length === 0 ? 1 : tasks.length
     let completedLevel = (completedTasks/totalTasks)*100
     const progress = document.getElementById("progress")
     progress.style.width = `${completedLevel}%`
-    taskCompter.innerHTML = `${completedTasks} / ${totalTasks}`
+    levelInfo.innerHTML = `Niveau: ${completedLevel.toFixed(2)}%`
 }
 
 /**
  * taskStatus: Update task status
  * @param {number} index 
  */
-const taskStatus = (index) => {
-    tasks[index].completed = !tasks[index].completed
+const taskStatus = (id) => {
+    const task = tasks.find(task => task.id === id)
+    if (task) {
+        task.completed = !task.completed
+        updateTasksLists(tasks, tasksList)
+        taskProgression(tasks, completedTasks, totalTasks)
+    }
 }
 
 /**
  * editTask: Edit task
- * @param {number} index 
+ * @param {number} id
  */
-const editTask = (index) => {
-    taskInput.value = tasks[index].name
-    deleteTask(index)
+const editTask = (id) => {
+    taskInput.value = ''
+    const taskToEdit = tasks.find(task => task.id === id)
+    if (taskToEdit) {
+        taskInput.value = taskToEdit.name
+        editingTask = taskToEdit
+    }
 }
 
 /**
  * deleteTask: Delete task
- * @param {number} index 
+ * @param {number} id
  */
-const deleteTask = (index) => {
+const deleteTask = (id) => {
     alert.innerHTML = ""
-    tasks.splice(index, 1)
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    updateTasksLists(tasks, tasksList)
-    taskProgression(tasks, completedTasks, totalTasks)
+    const taskId = tasks.findIndex(task => task.id === id)
+    if (taskId > -1) {
+        tasks.splice(taskId, 1)
+        updateTasksLists(tasks, tasksList)
+        taskProgression(tasks, completedTasks, totalTasks)
+    }
 }
 
 /**
@@ -141,7 +181,7 @@ const deleteTask = (index) => {
 const updateTasksLists = (tasks, tasksList) => {
     tasksList.innerHTML = ""
 
-    tasks.map((task, index) => {
+    tasks.map((task) => {
         const completed = task.completed ? "completed" : "";
         let taskItem = document.createElement("li")
 
@@ -152,10 +192,10 @@ const updateTasksLists = (tasks, tasksList) => {
                 <p>${task.name}</p>
             </div>
             <div class="taskActions">
-                <button class="btnUpdate" onclick="editTask(${index})">
+                <button class="btnUpdate" onclick="editTask(${task.id})">
                     <i class="fa-duotone fa-solid fa-pen-to-square"></i>
                 </button>
-                <button class="btnDelete" onclick="deleteTask(${index})">
+                <button class="btnDelete" onclick="deleteTask(${task.id})">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </div>
@@ -163,12 +203,11 @@ const updateTasksLists = (tasks, tasksList) => {
         `
         const checkbox = taskItem.querySelector('.checkbox');
         checkbox.addEventListener("change", () => {
-            taskStatus(index)
-            updateTasksLists(tasks, tasksList)
-            taskProgression(tasks, completedTasks, totalTasks)
+            taskStatus(task.id)
         });
 
         tasksList.append(taskItem)
-        localStorage.setItem('tasks', JSON.stringify(tasks));
     })
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }

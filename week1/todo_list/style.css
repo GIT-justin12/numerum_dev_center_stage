@@ -39,8 +39,17 @@ body {
 }
 
 .task_compter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
-    text-align: center;
+    width: 100px;
+    height: 100px;
+}
+
+.task_compter span {
+    width: 100%;
+    height: 100%;
 }
 
 .details {
@@ -85,6 +94,11 @@ body {
 }
 
 .alert p {
+    color: var(--dangerColor);
+}
+
+.apiInfo a {
+    text-decoration: none;
     color: var(--dangerColor);
 }
 
