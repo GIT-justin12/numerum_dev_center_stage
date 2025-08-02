@@ -156,6 +156,7 @@ const editTask = (id) => {
     if (taskToEdit) {
         taskInput.value = taskToEdit.name
         editingTask = taskToEdit
+        taskInput.focus()
     }
 }
 
