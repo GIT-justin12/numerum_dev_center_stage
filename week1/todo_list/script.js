@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getMeteo(meteoInfo)
     setInterval(() => {
         getMeteo(meteoInfo)
-    }, 60000)
+    }, 1200000)
     updateTasksLists(tasks, tasksList)
     taskProgression(tasks, completedTasks, totalTasks)
 })
@@ -151,6 +151,7 @@ const taskStatus = (id) => {
  * @param {number} id
  */
 const editTask = (id) => {
+    alert.innerHTML = ""
     taskInput.value = ''
     const taskToEdit = tasks.find(task => task.id === id)
     if (taskToEdit) {
