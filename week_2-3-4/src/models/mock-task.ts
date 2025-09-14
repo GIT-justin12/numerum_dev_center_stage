@@ -1,0 +1,113 @@
+import type { Task } from "../types/task"
+
+export const TASKS: Task[] = [
+    {
+      "id": "1",
+      "title": "Faire les courses",
+      "description": "Acheter du lait, des œufs et du pain à l'épicerie",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Nettoyer la maison",
+      "description": "Passer l'aspirateur et laver le sol dans toutes les pièces",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "title": "Préparer le dîner",
+      "description": "Cuire le poulet et préparer des légumes pour ce soir",
+      "completed": true
+    },
+    {
+      "id": "4",
+      "title": "Répondre aux emails",
+      "description": "Vérifier et répondre aux messages professionnels en attente",
+      "completed": true
+    },
+    {
+      "id": "5",
+      "title": "Aller à la gym",
+      "description": "Séance d'entraînement de 45 minutes - cardio et musculation",
+      "completed": false
+    },
+    {
+      "id": "7",
+      "title": "Rendez-vous médical",
+      "description": "Consultation chez le dentiste à 14h30",
+      "completed": false
+    },
+    {
+      "id": "8",
+      "title": "Payer les factures",
+      "description": "Régler l'électricité, l'eau et internet",
+      "completed": false
+    },
+    {
+      "id": "9",
+      "title": "Préparer la réunion",
+      "description": "Créer la présentation pour la réunion de demain matin",
+      "completed": true
+    },
+    {
+      "id": "10",
+      "title": "Arroser les plantes",
+      "description": "Donner de l'eau à toutes les plantes d'intérieur",
+      "completed": true
+    },
+    {
+      "id": "11",
+      "title": "Appeler maman",
+      "description": "Prendre des nouvelles de la famille",
+      "completed": true
+    },
+    {
+      "id": "12",
+      "title": "Faire la lessive",
+      "description": "Laver et plier le linge sale",
+      "completed": false
+    },
+    {
+      "id": "13",
+      "title": "Réviser le français",
+      "description": "Étudier les verbes irréguliers pendant 30 minutes",
+      "completed": false
+    },
+    {
+      "id": "14",
+      "title": "Sortir les poubelles",
+      "description": "Mettre les ordures et le recyclage devant la maison",
+      "completed": true
+    },
+    {
+      "id": "15",
+      "title": "Planifier la semaine",
+      "description": "Organiser l'emploi du temps pour les 7 prochains jours",
+      "completed": false
+    },
+    {
+      "id": "18",
+      "title": "Faire du jogging",
+      "description": "Courir 5 km dans le parc",
+      "completed": false
+    },
+    {
+      "id": "19",
+      "title": "Nettoyer le frigo",
+      "description": "Jeter les aliments périmés et laver l'intérieur",
+      "completed": false
+    },
+    {
+      "id": "20",
+      "title": "Écrire un rapport",
+      "description": "Terminer le document pour le projet en cours",
+      "completed": true
+    },
+    {
+      "id": "1757426600188",
+      "title": "Tazo maman",
+      "completed": false
+    }  
+]
+
+export default TASKS
