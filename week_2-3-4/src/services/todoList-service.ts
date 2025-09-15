@@ -35,8 +35,7 @@ class TodoListServices {
                 })
                 .catch(error => {
                     console.error('There was an error!', error);
-                }
-            );
+                })
         }
 
         return new Promise(resolve => {
