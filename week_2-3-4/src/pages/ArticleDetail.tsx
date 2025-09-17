@@ -9,7 +9,6 @@ import type { Article } from "../types/article";
 
 export function ArticleDetailPage() {
   const [articleData, setArticleData] =  useState<Article>();
-  //const articleData: Article | null = null;
   const { data, loading, error, refetch, getArticleById } = useArticles();
 
   const { articleId } = useParams<{ articleId: string}>();
