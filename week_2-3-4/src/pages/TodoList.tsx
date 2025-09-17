@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { SquarePen, Trash } from 'lucide-react'
 import type { FormEvent } from 'react'
 import WeatherService from "../services/weather-service"
-import { useTheme } from "../context/ThemeContext"
 import TodoListServices from "../services/todoList-service"
 import type { Task } from "../types/task"
 import { useNavigate } from "react-router-dom"
@@ -31,8 +30,6 @@ function TodoList() {
   const [newTask, setNewTask] = useState<Task>()
    const inputRef = useRef<HTMLInputElement>(null)
   console.log(newTask)
-
-  const { theme } = useTheme()
 
   const navigate = useNavigate();
 
@@ -118,8 +115,8 @@ useEffect(() => {
     <>
       <div className="flex flex-col m-auto md:max-w-3xl min-h-screen">
         <div className="p-4 mt-2">
-          <div className={`card flex flex-col md:flex-row justify-between shadow-md p-4 rounded-lg 
-            ${ theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"}`}>
+          <div className="card flex flex-col md:flex-row justify-between shadow-md p-4 rounded-lg 
+            bg-base-100 text-black">
             <div className="">
               <h2 className="text-xl text-primaryColor font-bold mb-4">Planning</h2>
               <p>{weather ? (`${weather.main.temp} °C, ${weather.name}-${weather.sys.country}`) : meteoError}</p>
@@ -161,7 +158,7 @@ useEffect(() => {
 
         {/* Form */}
         <div className="p-4">
-          <form className={`my-2 flex shadow-md rounded-lg ${ theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"}`} 
+          <form className="my-2 flex shadow-md rounded-lg bg-base-100 text-black" 
           onSubmit={handleSubmit}>
             <input
               type="text"
@@ -180,7 +177,7 @@ useEffect(() => {
 
         {/* Task list */}
         <div className="p-4">
-          <ul className={`list ${ theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"} rounded-xs shadow-md`}>
+          <ul className="list bg-base-100 text-black rounded-xs shadow-md">
             {
               tasks && tasks.length > 0 ? (
                 <>
@@ -192,7 +189,7 @@ useEffect(() => {
                         taskStatus(task.id)
                         //setCompleted(tasks.filter(task => task.completed).length)
                       }}
-                        className={`checkbox ${ theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"}`} /></div>
+                        className="checkbox bg-base-100 text-black" /></div>
                       <div>
                     
                         <div>{task.title}</div>

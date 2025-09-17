@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTheme } from "../context/ThemeContext"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -17,7 +16,6 @@ type Form = {
 
 function Login() {
   const auth = useAuth();
-  const { theme } = useTheme()
   const [form, setForm] = useState<Form>({
     username: { value: '' },
     password: { value: '' },
@@ -87,21 +85,21 @@ function Login() {
         <div className="min-h-screen flex flex-col justify-center items-center">
           {message && <div className="alert alert-info alert-soft shadow-lg">{message}</div>}
           <form onSubmit={(e) => handleSubmit(e)} className="min-h-screen flex justify-center items-center">
-              <fieldset className={`fieldset border-base-300 rounded-box w-xs border p-4 ${theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"}`}>
+              <fieldset className="fieldset border-base-300 rounded-box w-xs border p-4 bg-base-100 text-black">
                   <legend className={`fieldset-legend text-primary text-xl p-2`}>Connexion</legend>
                   <label className="label">Username</label>
                   {form.username.error &&
                   <div className="text-red-600"> 
                    {form.username.error} 
                   </div>} 
-                  <input type="text" className={`input ${theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"}`} 
+                  <input type="text" className="input bg-base-100 text-black" 
                     placeholder="Username" name="username" value={form.username.value} onChange={e => handleInputChange(e)} />
                   <label className="label">Password</label>
                   {form.password.error &&
                   <div className="text-red-600"> 
                    {form.password.error} 
                   </div>}
-                  <input type="password" className={`input ${theme ? "bg-base-100 text-black" : "bg-neutral-500 text-white"}`} 
+                  <input type="password" className="input bg-base-100 text-black" 
                     placeholder="Password" name="password" value={form.password.value} onChange={e => handleInputChange(e)} />
                   <button className="btn font-bold bg-primary border-none rounded-r-[10px] cursor-pointermt-4">Login</button>
               </fieldset>

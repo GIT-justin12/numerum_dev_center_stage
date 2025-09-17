@@ -24,7 +24,7 @@
       "id": "1",
       "title": "Faire les courses",
       "description": "Acheter du lait, des œufs et du pain à l'épicerie",
-      "completed": true
+      "completed": false
     },
     {
       "id": "2",

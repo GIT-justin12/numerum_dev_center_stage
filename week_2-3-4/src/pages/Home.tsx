@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import { useTheme } from '../context/ThemeContext';
-
-
 
 function Home() {
   type Animal = {
@@ -61,24 +58,22 @@ function Home() {
     setName("")
   }
 
-  const { theme } = useTheme()
-
   return (
     <>
-        <div className={`border-base-300 p-4 ${ theme ? "bg-white text-black" : "bg-neutral text-white"}`}>
-            <div className={`flex flex-col justify-center items-center p-4 ${ theme ? "bg-base-300 text-black" : "bg-neutral-500 text-white"}`}>
+        <div className="border-base-300 p-4 bg-white text-black">
+            <div className="flex flex-col justify-center items-center p-4 bg-base-300 text-black">
                 <h1 className='font-poppins'>Bienvenue !</h1>
                 <p>J'ai reçu {count} cliques</p>
                 <button className="btn btn-outline btn-primary" onClick={() => setCount(count + 1)}>Compteur</button>
             </div>
             <div className="divider"></div>
-            <div className={`place-items-center p-4 ${ theme ? "bg-base-300" : "bg-neutral-500"}`}>
+            <div className="place-items-center flex justify-center p-4 bg-base-300">
                 <form className='' onSubmit={welcome}>
-                    <fieldset className={`fieldset border-base-300 w-xs p-8 ${ theme ? "bg-base-200" : "bg-neutral-400"}`}>
+                    <fieldset className="fieldset border-base-300 w-xs p-8 bg-base-200">
                     <input 
                     type="text"
                     value={name}
-                    className={`input ${ theme ? "bg-base-200" : "bg-neutral-400"}`}
+                    className="input bg-base-200"
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Votre nom SVP" required/>
                     <button className="btn btn-primary" type="submit">Envoyer</button>
@@ -86,9 +81,9 @@ function Home() {
                 </form>
             </div>
             <div className="divider"></div>
-            <div className={`${ theme ? "bg-base-300" : "bg-neutral-500"} p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`}>
+            <div className="bg-base-300 p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {animals.map((animal, index) => (
-                    <div key={index} className={`card shadow-sm ${ theme ? "bg-base-200" : "bg-neutral-600"}`}>
+                    <div key={index} className="card shadow-sm bg-base-200">
                         <div className="card-body">
                           <h2 className="card-title text-primary font-bold">{animal.name}</h2>
                           <p>{animal.description}</p>

@@ -1,13 +1,12 @@
 import { Calendar, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Article } from '../types/article';
-import { useTheme } from "../context/ThemeContext";
+
 
 function ArticleCard({ article }: { article: Article }) {
-  const { theme } = useTheme()
   return (
-    <div className={`card bg-base-300 shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col 
-      ${ theme ? "bg-base-100 text-black" : "bg-neutral-700 text-white"}`}>
+    <div className="card bg-base-300 shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col 
+      bg-base-100 text-black">
       {/* Image */}
       <figure className="aspect-video overflow-hidden">
         <img
@@ -29,7 +28,7 @@ function ArticleCard({ article }: { article: Article }) {
         </p>
         {/* Métadonnées */}
         <div className="flex items-center gap-4 text-sm text-base-content/60 mb-4">
-          <div className={`flex items-center gap-1 ${ theme ? "text-black" : "text-white"}`}>
+          <div className="flex items-center gap-1 text-black">
             <Calendar className="w-4 h-4" />
             <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
           </div>

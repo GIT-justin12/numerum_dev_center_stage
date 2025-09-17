@@ -5,7 +5,7 @@ import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 import { useArticles } from "../context/ArticlesContext";
 import { useEffect, useState } from "react";
 import type { Article } from "../types/article";
-import { useTheme } from "../context/ThemeContext";
+
 
 export function ArticleDetailPage() {
   const [articleData, setArticleData] =  useState<Article>();
@@ -20,7 +20,6 @@ export function ArticleDetailPage() {
     }
   }, [data]);
 
-  const { theme } = useTheme();
   const navigate = useNavigate();
   console.log(articleData);
   console.log(articleId, articleData);
@@ -37,7 +36,7 @@ export function ArticleDetailPage() {
 
   if (error) {
     return (
-      <div className={`error-state ${ theme ? "bg-base-100 text-black" : "bg-neutral-700 text-white"}`}>
+      <div className="error-state bg-base-100 text-black">
         <h3>Erreur de chargement</h3>
         <p>Une erreur est survenue lors du chargement des articles.</p>
         <button className="retry-btn" onClick={refetch}>
@@ -50,7 +49,7 @@ export function ArticleDetailPage() {
 
   if (!articleData || !data) {
     return (
-      <div className={`empty-state ${ theme ? "bg-base-100 text-black" : "bg-neutral-700 text-white"}`}>
+      <div className="empty-state bg-base-100 text-black">
         <h3>Article indisponible</h3>
         <button onClick={refetch} className="refresh-btn">
           Charger les articles
@@ -76,7 +75,7 @@ export function ArticleDetailPage() {
           {/*article.category*/}
         </div>
 
-        <h1 className={`text-4xl font-bold text-base-content mb-4 ${ theme ? "text-black" : "text-white"}`}>
+        <h1 className="text-4xl font-bold text-base-content mb-4 text-black">
           {articleData.title}
         </h1>
 
@@ -100,10 +99,10 @@ export function ArticleDetailPage() {
           className="w-full h-64 object-cover"
         />
       </figure>
-      <div className={`card ${ theme ? "text-black" : "text-white"}`}>
+      <div className="card text-black">
         <div className="card-body p-8">
           <article
-            className={`prose max-w-none ${ theme ? "text-black" : "text-white"}`}
+            className="prose max-w-none text-black"
             dangerouslySetInnerHTML={{ __html: articleData.description }}
           />
         </div>
