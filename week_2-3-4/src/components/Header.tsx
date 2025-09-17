@@ -29,7 +29,8 @@ function Home() {
                 <li><Link to="/articles" >Blog</Link></li>
             </ul>
         </div>
-        <button>
+        <div>
+            <button>
             <label className="swap swap-rotate btn btn-circle btn-ghost text-end">
                 <input type="checkbox" />
                 {/* Icône soleil (light) */}
@@ -42,6 +43,7 @@ function Home() {
                 </svg>
             </label>
         </button>
+        </div>
     </div>
     </>
   )

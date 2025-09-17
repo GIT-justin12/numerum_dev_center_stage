@@ -3,12 +3,12 @@ class WeatherService {
 
     private static readonly LATITUDE: number = 6.16667
     private static readonly LONGITUDE: number = 1.21667
-    private static readonly API_KEY: string = this.isDev ? import.meta.env.VITE_WEATHER_API_KEY : import.meta.env.WEATHER_API_KEY;
+    private static readonly WEATHER_API_KEY: string = this.isDev ? import.meta.env.VITE_WEATHER_API_KEY : import.meta.env.WEATHER_API_KEY;
     
     
     
     static getWeather = async () => {
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${this.LATITUDE}&lon=${this.LONGITUDE}&appid=${this.API_KEY}&units=metric`;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${this.LATITUDE}&lon=${this.LONGITUDE}&appid=${this.WEATHER_API_KEY}&units=metric`;
 
         try {
             const response = await fetch(apiUrl);
