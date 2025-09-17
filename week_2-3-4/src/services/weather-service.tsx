@@ -3,7 +3,7 @@ class WeatherService {
 
     private static readonly LATITUDE: number = 6.16667
     private static readonly LONGITUDE: number = 1.21667
-    private static readonly WEATHER_API_KEY: string = this.isDev ? import.meta.env.VITE_WEATHER_API_KEY : import.meta.env.WEATHER_API_KEY;
+    private static readonly WEATHER_API_KEY: string = this.isDev ? import.meta.env.VITE_WEATHER_API_KEY : process.env.WEATHER_API_KEY;
     
     
     
