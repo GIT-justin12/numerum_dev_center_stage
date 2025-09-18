@@ -1,9 +1,7 @@
 class WeatherService {
-    static isDev = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
-
     private static readonly LATITUDE: number = 6.16667
     private static readonly LONGITUDE: number = 1.21667
-    private static readonly WEATHER_API_KEY: string = this.isDev ? import.meta.env.VITE_WEATHER_API_KEY : process.env.WEATHER_API_KEY;
+    private static readonly WEATHER_API_KEY: string = import.meta.env.VITE_WEATHER_API_KEY;
 
     
     static getWeather = async () => {
