@@ -38,7 +38,7 @@ export const ArticlesProvider: React.FC<ArticlesProviderProps> = ({
   language = 'fr',
 }) => {
   const isDev = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
-  const GNEWS_API_KEY = isDev ? import.meta.env.VITE_GNEWS_API_KEY : process.env.GNEWS_API_KEY;
+  const GNEWS_API_KEY = isDev ? import.meta.env.VITE_GNEWS_API_KEY : import.meta.env.GNEWS_API_KEY;
   const url = `https://gnews.io/api/v4/top-headlines?category=${subject}&lang=${language}&apikey=${GNEWS_API_KEY}`;
 
   const { data, loading, error, refetch } = useFetch<Articles>(url);
