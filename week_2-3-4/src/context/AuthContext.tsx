@@ -1,12 +1,11 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import type { User } from "../types/User";
-import usersService from "../services/users-services";
 
 
 // Définition du type pour le contexte d'authentification
 interface AuthContextType {
   user: User | null;
-  login: (username: string, password: string) => Promise<Boolean>;
+  login: (username: string, password: string, users: User[]) => Boolean;
   logout: () => Promise<void>;
 }
 
@@ -18,27 +17,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Spécifie explicitement que l'état peut être de type 'User' ou 'null'
     const [user, setUser] = useState<User | null>(null);
 
-    const [users, setUsers] = useState<User[]>([]);
-
-    useEffect(() => {
-        usersService.getUsers().then(users => setUsers(users))
-    }, []);
-
-  // Fonction de connexion typée
-  const login = (username: string, password: string): Promise<Boolean> => {
-    return new Promise((resolve) => {
-        /*const userData = users.find((u) => u.username === username && u.password === password);*/
-        const userData = users.filter(user => (user.username === username && user.password === password));
-        console.log(users)
-        console.log(userData)
-        setTimeout(() => {
-            if (userData.length === 1) {
-                setUser(userData[0]);
-                resolve(true);
-            }
-        });
-    });
-  };
+// Fonction de connexion typée
+const login = (username: string, password: string, users: User[]): Boolean => {
+  const userData = users.filter(user => (user.username === username && user.password === password));
+  if (userData.length === 1) {
+      setUser(userData[0]);
+      return true;
+  }
+  return false;
+};
 
   // Fonction de déconnexion typée
   const logout = (): Promise<void> => {
@@ -50,7 +37,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  console.log(user?.username)
   // Les données et fonctions qui seront partagées
   const auth = { user, login, logout };
 

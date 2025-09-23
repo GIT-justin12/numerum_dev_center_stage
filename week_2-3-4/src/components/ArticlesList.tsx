@@ -3,7 +3,6 @@ import { useArticles } from "../context/ArticlesContext";
 
 function ArticlesList() {
   const { data, loading, error } = useArticles();
-  console.log(data)
     
   return (
     <>

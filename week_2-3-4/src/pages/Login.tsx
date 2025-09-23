@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import usersService from "../services/users-services";
+import type { User } from "../types/User";
 
 type Field = {
   value?: any,
@@ -16,6 +18,8 @@ type Form = {
 
 function Login() {
   const auth = useAuth();
+  const [users, setUsers] = useState<User[]>([])
+
   const [form, setForm] = useState<Form>({
     username: { value: '' },
     password: { value: '' },
@@ -24,6 +28,10 @@ function Login() {
   const navigate = useNavigate();
 
   const [message, setMessage] = useState<string>('Vous êtes déconnecté.')
+
+  useEffect(() => {
+        usersService.getUsers().then(users => setUsers(users))
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const fieldName: string = e.target.name;
@@ -57,8 +65,6 @@ function Login() {
     }
 
     setForm(newForm);
-    console.log(form)
-
     return newForm.username.isValid && newForm.password.isValid;
   }
 
@@ -68,14 +74,11 @@ function Login() {
     setMessage('Vous êtes déconnecté');
     if(isFormValid) {
       setMessage('Tentative de connexion en cours ...');
-      auth.login(form.username.value, form.password.value)
-      if(auth.user) {
+      if(auth.login(form.username.value, form.password.value, users)) {
         setMessage(`vous êtes connecté.`);
         navigate('/todolist');
-        console.log('succes');
       } else {
           setMessage('Identifiant ou mot de passe incorrect.');
-          console.log('echec');
       }
     }
   }
@@ -101,7 +104,7 @@ function Login() {
                   </div>}
                   <input type="password" className="input bg-base-100 text-black" 
                     placeholder="Password" name="password" value={form.password.value} onChange={e => handleInputChange(e)} />
-                  <button className="btn font-bold bg-primary border-none rounded-r-[10px] cursor-pointermt-4">Login</button>
+                  <button className="btn font-bold bg-primary border-none rounded-[5px] cursor-pointermt-4">Login</button>
               </fieldset>
           </form>
         </div>

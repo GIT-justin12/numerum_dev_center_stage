@@ -12,7 +12,6 @@ class TodoListServices {
         if (this.isDev) {
             return axios.get('http://localhost:3000/tasks')
                 .then(response => {
-                    console.log(response.data);
                     return response.data;
                 })
                 .catch(error => {

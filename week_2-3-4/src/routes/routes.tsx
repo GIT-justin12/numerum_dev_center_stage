@@ -15,12 +15,12 @@ const routes = [
     element: <MainLayout />,
     children: [
       {
-        path: '/login',
-        element: <Login />,
-      },
-      {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '/todolist',
@@ -37,16 +37,14 @@ const routes = [
           {
             index: true,
             element: (
-              <ProtectedRoute>
-                <ArticlesList/>
-              </ProtectedRoute>),
+              <ArticlesList/>
+            ),
           },
           {
             path: ':articleId',
             element: (
-              <ProtectedRoute>
-                <ArticleDetailPage />
-              </ProtectedRoute>),
+              <ArticleDetailPage />
+            ),
           },
         ],
       },

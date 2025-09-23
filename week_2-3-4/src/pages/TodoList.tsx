@@ -28,8 +28,7 @@ function TodoList() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [completed, setCompleted] = useState<number>(0)
   const [newTask, setNewTask] = useState<Task>()
-   const inputRef = useRef<HTMLInputElement>(null)
-  console.log(newTask)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const navigate = useNavigate();
 
@@ -85,8 +84,6 @@ function TodoList() {
     })
   );
   }
-
-  console.log(authentificationService.isAuthenticated)
 
 useEffect(() => {
   const fetchMeteoData = async () => {
