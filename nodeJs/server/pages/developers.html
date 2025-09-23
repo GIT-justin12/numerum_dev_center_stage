@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Métier de Développeur</title>
+    <style>
+        /* Styles généraux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* En-tête */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a69bd);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #34495e;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            padding: 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+            background-color: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 20px 0 15px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Spécialités */
+        .specialties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .specialty-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Outils */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .tool-item {
+            background: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        /* Perspectives */
+        .career-path {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .path-item {
+            flex: 0 0 30%;
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Formation */
+        .formation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .formation-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Citation */
+        blockquote {
+            font-style: italic;
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+        
+        /* Pied de page */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .path-item {
+                flex: 0 0 100%;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Le Métier de Développeur</h1>
+            <p>Explorez l'univers passionnant du développement web et logiciel, un secteur en constante évolution qui façonne notre monde numérique.</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#description">Description</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#specialites">Spécialités</a></li>
+            <li><a href="#outils">Outils</a></li>
+            <li><a href="#perspectives">Perspectives</a></li>
+            <li><a href="#formation">Formation</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="description">
+            <h2>Qu'est-ce qu'un développeur ?</h2>
+            <p>Un développeur est un professionnel qui conçoit, crée, teste et maintient des applications, des sites web, des logiciels ou des systèmes informatiques. C'est un architecte du numérique qui transforme des idées et des besoins en solutions techniques fonctionnelles.</p>
+            
+            <p>Les développeurs travaillent à travers différents langages de programmation, frameworks et outils pour construire des produits numériques qui répondent aux exigences des utilisateurs et des entreprises.</p>
+            
+            <blockquote>
+                "Le développement est bien plus qu'un simple travail de codage. C'est un processus créatif qui consiste à résoudre des problèmes complexes et à créer de la valeur grâce à la technologie."
+            </blockquote>
+        </section>
+        
+        <section id="competences">
+            <h2>Compétences Requises</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Compétences Techniques</h3>
+                    <ul>
+                        <li>Maîtrise des langages de programmation (JavaScript, Python, Java, C#, etc.)</li>
+                        <li>Connaissance des bases de données (SQL, NoSQL)</li>
+                        <li>Développement front-end (HTML, CSS, frameworks JavaScript)</li>
+                        <li>Développement back-end (serveurs, API, architecture)</li>
+                        <li>Gestion de version avec Git</li>
+                        <li>Concepts de sécurité informatique</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Compétences Méthodologiques</h3>
+                    <ul>
+                        <li>Méthodes agiles (Scrum, Kanban)</li>
+                        <li>Gestion de projet</li>
+                        <li>Tests et débogage</li>
+                        <li>Documentation technique</li>
+                        <li>Déploiement et DevOps</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Qualités Personnelles</h3>
+                    <ul>
+                        <li>Logique et esprit d'analyse</li>
+                        <li>Créativité et innovation</li>
+                        <li>Résolution de problèmes</li>
+                        <li>Adaptabilité et apprentissage continu</li>
+                        <li>Travail d'équipe et communication</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="specialites">
+            <h2>Spécialisations</h2>
+            <div class="specialties">
+                <div class="specialty-card">
+                    <h3>Développeur Front-end</h3>
+                    <p>Spécialiste de l'interface utilisateur, il crée la partie visible des sites web et applications. Il travaille sur l'expérience utilisateur (UX), l'interface (UI) et assure la responsivité sur tous les appareils.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <h3>Développeur Back-end</h3>
+                    <p>Expert du côté serveur, il conçoit la logique métier, les bases de données et les API. Il garantit les performances, la sécurité et la robustesse des applications.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <h3>Développeur Full-stack</h3>
+                    <p>Polyvalent, il maîtrise à la fois le front-end et le back-end. Il peut intervenir sur toutes les couches d'une application et possède une vision globale des projets.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <h3>Développeur Mobile</h3>
+                    <p>Spécialisé dans la création d'applications pour smartphones et tablettes (iOS, Android). Il connaît les spécificités des plateformes mobiles.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <h3>DevOps</h3>
+                    <p>À l'intersection du développement et des opérations, il automatise les processus de déploiement, d'intégration continue et assure la scalabilité des applications.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <h3>Data Scientist/Développeur</h3>
+                    <p>Expert en traitement et analyse de données, il crée des algorithmes et modèles pour extraire de la valeur à partir de grandes quantités de données.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="outils">
+            <h2>Outils du Développeur</h2>
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <h3>Environnements de développement</h3>
+                    <p>VS Code, IntelliJ, Eclipse</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h3>Gestion de versions</h3>
+                    <p>Git, GitHub, GitLab</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h3>Frameworks Front-end</h3>
+                    <p>React, Angular, Vue.js</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h3>Frameworks Back-end</h3>
+                    <p>Node.js, Django, Spring, Laravel</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h3>Bases de données</h3>
+                    <p>MySQL, PostgreSQL, MongoDB</p>
+                </div>
+                
+                <div class="tool-item">
+                    <h3>Outils de déploiement</h3>
+                    <p>Docker, Kubernetes, Jenkins</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="perspectives">
+            <h2>Perspectives Professionnelles</h2>
+            <div class="career-path">
+                <div class="path-item">
+                    <h3>Marché de l'emploi</h3>
+                    <p>Le secteur du développement connaît une forte croissance avec une demande toujours plus importante de profils qualifiés. Les perspectives d'emploi sont excellentes dans tous les domaines.</p>
+                </div>
+                
+                <div class="path-item">
+                    <h3>Rémunération</h3>
+                    <p>Les salaires varient selon l'expérience, la spécialisation et la localisation. En France, un développeur junior peut commencer entre 32k€ et 38k€, tandis qu'un développeur senior peut atteindre 55k€ à 70k€.</p>
+                </div>
+                
+                <div class="path-item">
+                    <h3>Évolution de carrière</h3>
+                    <p>Un développeur peut évoluer vers des postes de lead developer, architecte logiciel, CTO, ou se spécialiser dans un domaine technique particulier. L'expertise technique permet également de travailler en freelance.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="formation">
+            <h2>Formation et Parcours</h2>
+            <div class="formation-cards">
+                <div class="formation-card">
+                    <h3>Formations courtes (6-12 mois)</h3>
+                    <p>Bootcamps intensifs et formations accélérées qui permettent d'acquérir les bases du développement web et d'entrer rapidement sur le marché du travail.</p>
+                </div>
+                
+                <div class="formation-card">
+                    <h3>Bac+2</h3>
+                    <p>BTS SIO (Services Informatiques aux Organisations) ou DUT Informatique qui offrent une formation technique solide pour devenir développeur.</p>
+                </div>
+                
+                <div class="formation-card">
+                    <h3>Bac+3 à Bac+5</h3>
+                    <p>Licences professionnelles, Bachelor informatique, Masters spécialisés ou écoles d'ingénieurs qui permettent d'acquérir une expertise technique et théorique approfondie.</p>
+                </div>
+                
+                <div class="formation-card">
+                    <h3>Autodidactie</h3>
+                    <p>De nombreux développeurs sont autodidactes, apprenant grâce aux ressources en ligne (tutoriels, MOOCs, documentation) et à la pratique personnelle de projets.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 - Présentation du métier de développeur</p>
+            <p>Une passion, un métier d'avenir, une vocation pour façonner le monde numérique de demain.</p>
+        </div>
+    </footer>
+</body>
+</html>

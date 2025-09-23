@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Métier d'Ingénieur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* En-tête */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,122.7C672,128,768,160,864,170.7C960,181,1056,171,1152,165.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            padding: 15px 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        nav a i {
+            margin-right: 8px;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        section:nth-child(odd) {
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--light);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Présentation */
+        #presentation {
+            text-align: center;
+        }
+        
+        /* Domaines */
+        .domains-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .domain-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .domain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .domain-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-list i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        /* Formation */
+        .formation-path {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .formation-step {
+            flex: 0 0 48%;
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+            padding-left: 70px;
+        }
+        
+        .formation-step::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 25px;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .formation-step:nth-child(1)::before { content: "1"; }
+        .formation-step:nth-child(2)::before { content: "2"; }
+        .formation-step:nth-child(3)::before { content: "3"; }
+        .formation-step:nth-child(4)::before { content: "4"; }
+        
+        /* Perspectives */
+        .career-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .career-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .career-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        /* Témoignages */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: "\"";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 5rem;
+            color: rgba(52, 152, 219, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        /* CTA */
+        #cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        #cta h2 {
+            color: white;
+        }
+        
+        #cta h2::after {
+            background: white;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 20px 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Pied de page */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .formation-step {
+                flex: 0 0 100%;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Le Métier d'Ingénieur</h1>
+            <p>Innovation, technique et solutions pour construire le monde de demain</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#presentation"><i class="fas fa-info-circle"></i> Présentation</a></li>
+            <li><a href="#domaines"><i class="fas fa-cogs"></i> Domaines</a></li>
+            <li><a href="#competences"><i class="fas fa-brain"></i> Compétences</a></li>
+            <li><a href="#formation"><i class="fas fa-graduation-cap"></i> Formation</a></li>
+            <li><a href="#perspectives"><i class="fas fa-chart-line"></i> Perspectives</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="presentation">
+            <h2>Qu'est-ce qu'un ingénieur ?</h2>
+            <p>Un ingénieur est un professionnel qui conçoit, invente, innove et résout des problèmes techniques complexes. Il utilise les sciences, les technologies et les mathématiques pour développer des solutions pratiques dans divers domaines.</p>
+            
+            <p>Le métier d'ingénieur allie créativité, rigueur scientifique et sens des responsabilités pour transformer des concepts en réalisations concrètes qui répondent aux besoins de la société.</p>
+            
+            <p>Que ce soit dans la construction, l'informatique, l'énergie ou la santé, les ingénieurs jouent un rôle crucial dans le progrès technologique et le développement durable.</p>
+        </section>
+        
+        <section id="domaines">
+            <h2>Domaines d'ingénierie</h2>
+            <div class="domains-container">
+                <div class="domain-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Génie Informatique</h3>
+                    <p>Conception et développement de systèmes informatiques, logiciels, réseaux et solutions numériques.</p>
+                </div>
+                
+                <div class="domain-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Génie Mécanique</h3>
+                    <p>Conception, fabrication et maintenance de systèmes mécaniques, machines et équipements industriels.</p>
+                </div>
+                
+                <div class="domain-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Génie Électrique</h3>
+                    <p>Étude et développement de systèmes électriques, électroniques et énergétiques.</p>
+                </div>
+                
+                <div class="domain-card">
+                    <i class="fas fa-hard-hat"></i>
+                    <h3>Génie Civil</h3>
+                    <p>Conception, construction et entretien d'infrastructures : bâtiments, ponts, routes, tunnels.</p>
+                </div>
+                
+                <div class="domain-card">
+                    <i class="fas fa-atom"></i>
+                    <h3>Génie Chimique</h3>
+                    <p>Transformation de la matière et conception de procédés chimiques industriels.</p>
+                </div>
+                
+                <div class="domain-card">
+                    <i class="fas fa-lungs"></i>
+                    <h3>Génie Biomédical</h3>
+                    <p>Conception d'équipements médicaux et technologies pour la santé.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="competences">
+            <h2>Compétences de l'ingénieur</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Compétences Techniques</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Maîtrise des principes scientifiques</li>
+                        <li><i class="fas fa-check"></i> Conception et modélisation (CAO, DAO)</li>
+                        <li><i class="fas fa-check"></i> Analyse et résolution de problèmes complexes</li>
+                        <li><i class="fas fa-check"></i> Gestion de projets techniques</li>
+                        <li><i class="fas fa-check"></i> Maîtrise des outils informatiques spécialisés</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Compétences Transversales</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Capacité d'adaptation</li>
+                        <li><i class="fas fa-check"></i> Travail d'équipe pluridisciplinaire</li>
+                        <li><i class="fas fa-check"></i> Leadership et gestion d'équipe</li>
+                        <li><i class="fas fa-check"></i> Communication technique</li>
+                        <li><i class="fas fa-check"></i> Créativité et innovation</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Savoir-être Professionnel</h3>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Rigueur et précision</li>
+                        <li><i class="fas fa-check"></i> Sens des responsabilités</li>
+                        <li><i class="fas fa-check"></i> Éthique professionnelle</li>
+                        <li><i class="fas fa-check"></i> Curiosité intellectuelle</li>
+                        <li><i class="fas fa-check"></i> Gestion du stress et des deadlines</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="formation">
+            <h2>Parcours de Formation</h2>
+            <div class="formation-path">
+                <div class="formation-step">
+                    <h3>Diplôme d'Ingénieur</h3>
+                    <p>Formation en 5 ans après le baccalauréat, comprenant 2 ans de classes préparatoires (CPGE) et 3 ans en école d'ingénieurs.</p>
+                </div>
+                
+                <div class="formation-step">
+                    <h3>Master en Ingénierie</h3>
+                    <p>Formation universitaire de 5 ans permettant une spécialisation dans un domaine technique spécifique.</p>
+                </div>
+                
+                <div class="formation-step">
+                    <h3>Alternance</h3>
+                    <p>De nombreuses écoles proposent des formations en alternance, combinant enseignement théorique et expérience professionnelle.</p>
+                </div>
+                
+                <div class="formation-step">
+                    <h3>Spécialisations</h3>
+                    <p>Possibilité de poursuivre avec un Mastère Spécialisé ou un Doctorat pour approfondir une expertise.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="perspectives">
+            <h2>Perspectives Professionnelles</h2>
+            <div class="career-container">
+                <div class="career-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Marché de l'emploi</h3>
+                    <p>Le secteur de l'ingénierie offre d'excellentes perspectives d'emploi avec un taux de chômage très bas et des recrutements dynamiques.</p>
+                </div>
+                
+                <div class="career-card">
+                    <i class="fas fa-euro-sign"></i>
+                    <h3>Rémunération</h3>
+                    <p>Un ingénieur débutant peut espérer un salaire annuel entre 35 000€ et 42 000€, avec une progression rapide selon l'expérience et la spécialisation.</p>
+                </div>
+                
+                <div class="career-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>International</h3>
+                    <p>Le métier d'ingénieur offre de nombreuses opportunités à l'international, avec des possibilités de carrière dans le monde entier.</p>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin-top: 50px;">Témoignages</h3>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"Devenir ingénieure m'a permis de concilier passion pour l'innovation et volonté de contribuer à des projets qui ont un impact positif sur la société."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div>
+                            <strong>Claire Martin</strong>
+                            <p>Ingénieure en énergies renouvelables</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"Ce qui me passionne dans ce métier, c'est la diversité des défis techniques à relever et la possibilité de travailler sur des projets toujours différents."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">T</div>
+                        <div>
+                            <strong>Thomas Dubois</strong>
+                            <p>Ingénieur en robotique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cta">
+            <h2>Prêt à relever le défi ?</h2>
+            <p>Découvrez les formations et les opportunités pour devenir ingénieur</p>
+            <div>
+                <a href="#" class="btn">En savoir plus</a>
+                <a href="#" class="btn btn-outline">Contactez-nous</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Le Métier d'Ingénieur</h3>
+                    <p>Une passion, un métier d'avenir, une vocation pour façonner le monde de demain.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">Formations</a></li>
+                        <li><a href="#">Écoles d'ingénieurs</a></li>
+                        <li><a href="#">Métiers de l'ingénierie</a></li>
+                        <li><a href="#">Salons étudiants</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Avenue de l'Innovation, Paris</li>
+                        <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-envelope"></i> contact@metier-ingenieur.fr</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 - Le Métier d'Ingénieur. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

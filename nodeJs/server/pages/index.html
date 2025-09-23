@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        h1 {
+            color: #6e8efb;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .highlight {
+            color: #a777e3;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #6e8efb;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+        }
+        
+        .btn:hover {
+            background: #5a7ce7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #6e8efb;
+            color: #6e8efb;
+        }
+        
+        .btn-outline:hover {
+            background: #6e8efb;
+            color: white;
+        }
+        
+        .icon-container {
+            margin: 25px 0;
+        }
+        
+        .icon {
+            font-size: 3rem;
+            color: #a777e3;
+            margin: 0 10px;
+            animation: bounce 2s infinite;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.5s;
+        }
+        
+        .delay-2 {
+            animation-delay: 1s;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 120px;
+            margin: 10px;
+            padding: 15px;
+            background: rgba(110, 142, 251, 0.1);
+            border-radius: 10px;
+        }
+        
+        .feature i {
+            font-size: 2rem;
+            color: #6e8efb;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue</h1>
+        
+        <div class="icon-container">
+            <i class="fas fa-heart icon"></i>
+            <i class="fas fa-smile icon delay-1"></i>
+            <i class="fas fa-star icon delay-2"></i>
+        </div>
+        
+        <p>Nous sommes ravis de vous accueillir sur notre <span class="highlight">page de bienvenue</span>. Découvrez tout ce que nous avons à vous offrir.</p>
+    
+    <footer>
+        <p>© 2025 - Page de Bienvenue. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

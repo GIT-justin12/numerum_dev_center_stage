@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site introuvable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #eee;
+        }
+        
+        
+        .animation {
+            font-size: 4rem;
+            margin: 25px 0;
+            color: #fdbb2d;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        .rotating {
+            animation: rotating 10s linear infinite;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes rotating {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Éléments d'arrière-plan */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .bg-1 {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            left: -100px;
+        }
+        
+        .bg-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            right: -150px;
+        }
+        
+        .bg-3 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 10%;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Éléments d'arrière-plan décoratifs -->
+    <div class="bg-element bg-1"></div>
+    <div class="bg-element bg-2"></div>
+    <div class="bg-element bg-3"></div>
+    
+    <div class="container">
+        <h1>Ce site est inexistant</h1>
+        
+        <div class="animation">
+            <i class="fas fa-search floating"></i>
+            <i class="fas fa-question rotating"></i>
+            <i class="fas fa-exclamation-triangle floating"></i>
+        </div>
+        
+        <p>Désolé, le site que vous recherchez semble introuvable sur notre serveur </p>
+    </div>
+    
+    <script>
+        // Animation pour les éléments d'arrière-plan
+        document.addEventListener('DOMContentLoaded', function() {
+            const bgElements = document.querySelectorAll('.bg-element');
+            bgElements.forEach(el => {
+                // Déplacement aléatoire
+                el.style.animation = `floating ${6 + Math.random() * 10}s ease-in-out infinite`;
+            });
+        });
+    </script>
+</body>
+</html>

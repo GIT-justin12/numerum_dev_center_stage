@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Grands Savants du Monde</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8e44ad;
+            --accent: #16a085;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* En-tête */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,224L48,213.3C96,203,192,181,288,160C384,139,480,117,576,122.7C672,128,768,160,864,170.7C960,181,1056,171,1152,165.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            padding: 15px 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        nav a i {
+            margin-right: 8px;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        section:nth-child(odd) {
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--light);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Introduction */
+        #introduction {
+            text-align: center;
+        }
+        
+        /* Filtres */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Grille des savants */
+        .savants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .savant-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .savant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .savant-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .savant-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        
+        .savant-info {
+            padding: 25px;
+        }
+        
+        .savant-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .savant-period {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .savant-domain {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .savant-contribution {
+            margin-bottom: 20px;
+        }
+        
+        .savant-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .savant-link:hover {
+            background: var(--primary);
+        }
+        
+        /* Chronologie */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -13px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        /* CTA */
+        #explore {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        #explore h2 {
+            color: white;
+        }
+        
+        #explore h2::after {
+            background: white;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 20px 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background: #138a72;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Pied de page */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::after, 
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Les Grands Savants du Monde</h1>
+            <p>Découvrez les esprits brillants qui ont façonné notre compréhension du monde</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#introduction"><i class="fas fa-lightbulb"></i> Introduction</a></li>
+            <li><a href="#savants"><i class="fas fa-users"></i> Savants</a></li>
+            <li><a href="#timeline"><i class="fas fa-history"></i> Chronologie</a></li>
+            <li><a href="#explore"><i class="fas fa-book-open"></i> Explorer</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="introduction">
+            <h2>L'Héritage des Grands Esprits</h2>
+            <p>À travers les siècles, des hommes et des femmes exceptionnels ont repoussé les limites de la connaissance humaine. Leur curiosité insatiable, leur persévérance et leur génie ont transformé notre compréhension de l'univers et ont jeté les bases du monde moderne.</p>
+            
+            <p>Cette page rend hommage à ces visionnaires qui, par leurs découvertes et innovations, ont changé le cours de l'histoire et continuent d'inspirer les générations futures.</p>
+        </section>
+        
+        <section id="savants">
+            <h2>Figures Marquantes de la Science</h2>
+            
+            <div class="filters">
+                <button class="filter-btn active">Tous</button>
+                <button class="filter-btn">Physique</button>
+                <button class="filter-btn">Mathématiques</button>
+                <button class="filter-btn">Médecine</button>
+                <button class="filter-btn">Chimie</button>
+                <button class="filter-btn">Astronomie</button>
+            </div>
+            
+            <div class="savants-grid">
+                <div class="savant-card">
+                    <div class="savant-image">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="savant-info">
+                        <h3 class="savant-name">Albert Einstein</h3>
+                        <span class="savant-period">1879 - 1955</span>
+                        <span class="savant-domain">Physique</span>
+                        <p class="savant-contribution">Théorie de la relativité, Prix Nobel de Physique 1921. Révolutionna notre compréhension de l'espace, du temps et de la gravité.</p>
+                        <a href="#" class="savant-link">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="savant-card">
+                    <div class="savant-image">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="savant-info">
+                        <h3 class="savant-name">Marie Curie</h3>
+                        <span class="savant-period">1867 - 1934</span>
+                        <span class="savant-domain">Physique & Chimie</span>
+                        <p class="savant-contribution">Pionnière dans l'étude de la radioactivité, seule lauréate de deux Prix Nobel dans deux sciences différentes.</p>
+                        <a href="#" class="savant-link">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="savant-card">
+                    <div class="savant-image">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="savant-info">
+                        <h3 class="savant-name">Louis Pasteur</h3>
+                        <span class="savant-period">1822 - 1895</span>
+                        <span class="savant-domain">Biologie</span>
+                        <p class="savant-contribution">Découvreur du principe de la vaccination et de la pasteurisation. Père de la microbiologie moderne.</p>
+                        <a href="#" class="savant-link">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="savant-card">
+                    <div class="savant-image">
+                        <i class="fas fa-square-root-alt"></i>
+                    </div>
+                    <div class="savant-info">
+                        <h3 class="savant-name">Isaac Newton</h3>
+                        <span class="savant-period">1643 - 1727</span>
+                        <span class="savant-domain">Mathématiques & Physique</span>
+                        <p class="savant-contribution">Lois du mouvement et de la gravitation universelle. Développa le calcul infinitésimal simultanément avec Leibniz.</p>
+                        <a href="#" class="savant-link">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="savant-card">
+                    <div class="savant-image">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <div class="savant-info">
+                        <h3 class="savant-name">Charles Darwin</h3>
+                        <span class="savant-period">1809 - 1882</span>
+                        <span class="savant-domain">Biologie</span>
+                        <p class="savant-contribution">Théorie de l'évolution par sélection naturelle. Auteur de "L'Origine des espèces" (1859).</p>
+                        <a href="#" class="savant-link">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="savant-card">
+                    <div class="savant-image">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="savant-info">
+                        <h3 class="savant-name">Galilée</h3>
+                        <span class="savant-period">1564 - 1642</span>
+                        <span class="savant-domain">Astronomie & Physique</span>
+                        <p class="savant-contribution">Père de la science moderne. Perfectionna la lunette astronomique et défendit l'héliocentrisme.</p>
+                        <a href="#" class="savant-link">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="timeline">
+            <h2>Chronologie des Découvertes</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">c. 240 av. J.-C.</div>
+                        <h3>Eratosthène</h3>
+                        <p>Calcule la circonférence de la Terre avec une précision remarquable.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1543</div>
+                        <h3>Nicolas Copernic</h3>
+                        <p>Publie "Des révolutions des sphères célestes", proposant un modèle héliocentrique.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1687</div>
+                        <h3>Isaac Newton</h3>
+                        <p>Publie "Philosophiæ Naturalis Principia Mathematica", jetant les bases de la mécanique classique.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1859</div>
+                        <h3>Charles Darwin</h3>
+                        <p>Publie "L'Origine des espèces", introduisant la théorie de l'évolution.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1905</div>
+                        <h3>Albert Einstein</h3>
+                        <p>Publie sa théorie de la relativité restreinte et l'équation E=mc².</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1953</div>
+                        <h3>James Watson & Francis Crick</h3>
+                        <p>Découvrent la structure en double hélice de l'ADN.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="explore">
+            <h2>Explorez l'Histoire des Sciences</h2>
+            <p>Plongez dans l'univers fascinant des découvertes scientifiques et des esprits brillants qui ont changé le monde</p>
+            <div>
+                <a href="#" class="btn">Découvrir les inventions</a>
+                <a href="#" class="btn btn-outline">Parcourir les biographies</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Les Grands Savants</h3>
+                    <p>Un hommage aux esprits brillants qui ont repoussé les frontières de la connaissance humaine.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#savants">Savants</a></li>
+                        <li><a href="#timeline">Chronologie</a></li>
+                        <li><a href="#explore">Explorer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Ressources</h3>
+                    <ul>
+                        <li><a href="#">Bibliographie</a></li>
+                        <li><a href="#">Musées des sciences</a></li>
+                        <li><a href="#">Documentaires</a></li>
+                        <li><a href="#">Articles scientifiques</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 - Les Grands Savants du Monde. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script pour les filtres
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+                    
+                    // Ici, on ajouterait la logique de filtrage des cartes
+                    // Pour l'instant, c'est juste une démonstration
+                });
+            });
+            
+            // Animation au défilement
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Appliquer l'animation aux cartes
+            const cards = document.querySelectorAll('.savant-card');
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
