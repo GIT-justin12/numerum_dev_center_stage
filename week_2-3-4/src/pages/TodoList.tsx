@@ -5,8 +5,6 @@ import WeatherService from "../services/weather-service"
 import TodoListServices from "../services/todoList-service"
 import type { Task } from "../types/task"
 import { useNavigate } from "react-router-dom"
-import authentificationService from "../services/authentification-service"
-
 
 function TodoList() {
 
